@@ -30,7 +30,7 @@ MCcolors = {
     "mag":    np.array([255, 64, 255]) / 255,
 }
 
-def plot_estimator(t, xest, Pest, x_true, plot_type="error", z=None, ax=None):
+def plot_estimator(t, xest, Pest, x_true, plot_type="error", z=None, ax=None,lw = 2):
 
     if t.ndim != 1:
         print("inputs must be 1D arrays")
@@ -54,20 +54,20 @@ def plot_estimator(t, xest, Pest, x_true, plot_type="error", z=None, ax=None):
         lower = xest - 2 * np.sqrt(bd)
 
         ax.plot(t, xest, color=MCcolors["blue"],
-                 label="state estimate")
+                 label="state estimate",lw = lw)
 
         ax.fill_between(t, upper, lower,
                          color=MCcolors["blue"],
                          alpha=0.1,
-                         label=r"estimate $\pm 2\sigma$")
+                         label=r"estimate $\pm 2\sigma$",lw = lw)
 
         ax.plot(t, x_true, "-.", color=MCcolors["mag"],
-                 label="true state")
+                 label="true state",lw = lw)
 
         if z is not None:
             ax.plot(t, z, ".", color=MCcolors["green"],
                      markersize=2,
-                     label="measurement")
+                     label="measurement",lw =lw)
 
         ax.set_ylabel(r"state estimate $\hat{x}(t)$")
 
